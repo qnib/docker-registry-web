@@ -1,0 +1,36 @@
+consul:
+    image: qnib/alpn-consul
+    hostname: consul
+    container_name: consul
+    dns: 127.0.0.1
+    ports:
+     - 8500
+    environment:
+     - DC_NAME=dc1
+     - CONSUL_BOOTSTRAP=true
+
+registry:
+    hostname: registry
+    container_name: registry
+    image: qnib/registry
+    dns: 127.0.0.1
+    ports:
+     - 80
+    environment:
+     - DC_NAME=dc1
+    volumes:
+     - ~/.docker/registry/:/var/lib/registry/
+    links:
+     - consul:consul
+
+registry-web:
+    hostname: registry-web
+    container_name: registry-web
+    image: qnib/registry-web
+    dns: 127.0.0.1
+    ports:
+     - 8080
+    environment:
+     - DC_NAME=dc1
+    links:
+     - consul:consul
