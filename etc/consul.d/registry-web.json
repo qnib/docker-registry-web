@@ -1,0 +1,16 @@
+{
+  "services": [
+    {
+      "id": "registry",
+      "name": "registry",
+      "tags": ["http"],
+      "port": 8080,
+      "checks": [
+        {
+          "script": "echo 'Checking HTTP endpoint of registry-web (curl -sI localhost:8080 |grep 200)'; curl -sI localhost:8080 |grep 200 || exit 2",
+          "interval": "30s"
+        }
+      ]
+    }
+  ]
+}

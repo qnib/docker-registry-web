@@ -59,5 +59,6 @@ RUN cp /opt/docker-registry-web-${REG_WEB_VER}/tomcat/context.xml $CATALINA_BASE
 ## QNIBTerminal stuff
 ADD etc/supervisord.d/registry-web.ini /etc/supervisord.d/
 ADD opt/qnib/registry-web/bin/start.sh /opt/qnib/registry-web/bin/
+ADD etc/consul.d/registry-web.json /etc/consul.d/
 
 EXPOSE  8080
