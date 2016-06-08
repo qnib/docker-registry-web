@@ -4,7 +4,7 @@ FROM qnib/u-jdk7
 ENV DEBIAN_FRONTEND=noninteractive \
     CATALINA_HOME=/usr/share/tomcat7 \
     CATALINA_BASE=/var/lib/tomcat7 \
-    REG_WEB_VER=0.0.2 \
+    REG_WEB_VER=0.0.4 \
     CATALINA_OPTS=" -Djava.security.egd=file:/dev/./urandom" \
     PATH=$CATALINA_HOME/bin:$PATH \
     REGISTRY_HOST=docker-registry.service.consul \
@@ -53,7 +53,7 @@ RUN cp -r /opt/docker-registry-web-${REG_WEB_VER}/* . \
 
 WORKDIR $CATALINA_BASE
 # Config
-RUN cp /opt/docker-registry-web-${REG_WEB_VER}/tomcat/context.xml $CATALINA_BASE/conf/ \
+RUN cp /opt/docker-registry-web-${REG_WEB_VER}/tomcat/server.xml $CATALINA_BASE/conf/ \
  && rm -rf /opt/docker-registry-web-${REG_WEB_VER}/
 
 ## QNIBTerminal stuff
